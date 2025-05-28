@@ -5,7 +5,11 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.UUID;
 
+import br.dev.gustavo.tarefas.dao.FuncionarioDAO;
+import br.dev.gustavo.tarefas.gui.FuncionarioGUI;
+import br.dev.gustavo.tarefas.model.Funcionario;
 import br.dev.gustavo.tarefas.model.Tarefas;
 
 public class Main {
@@ -13,14 +17,20 @@ public class Main {
 	static String caminho ="/Users/25132581/tarefasDS1TA/tarefas";
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
-		Tarefas tarefa = new Tarefas("lavar a louça");
-//		lerArquivo();
-//		escreverArquivo();
+		new FuncionarioGUI();
+		
+//		Funcionario f = new Funcionario("Pedro", "Programador");
+//		f.setSetor("TI");
+//
+//		
+//		Funcionario f2 = new Funcionario("Homer", "Programador");
+//		f2.setSetor("TI");
+//		
+//		FuncionarioDAO dao = new FuncionarioDAO(f2);
+//		dao.salvar();
 		
 	}
-
 	private static void escreverArquivo(){
 		FileWriter fw = null;
 		BufferedWriter bw = null;
