@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import br.dev.gustavo.tarefas.dao.FuncionarioDAO;
 import br.dev.gustavo.tarefas.gui.FuncionarioGUI;
+import br.dev.gustavo.tarefas.gui.FuncionariosListaGUI;
 import br.dev.gustavo.tarefas.model.Funcionario;
 import br.dev.gustavo.tarefas.model.Tarefas;
 
@@ -18,7 +19,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		new FuncionarioGUI();
+		new FuncionariosListaGUI();
 		
 //		Funcionario f = new Funcionario("Pedro", "Programador");
 //		f.setSetor("TI");

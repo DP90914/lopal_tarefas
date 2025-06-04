@@ -44,15 +44,19 @@ public class FuncionarioGUI {
 		JButton btnSalvar = new JButton("savar");
 		btnSalvar.setBounds(10, 250, 150, 40);
 		
+		JButton btnSair = new JButton("sair");
+		btnSair.setBounds(230, 250, 150, 40);
+		
 		
 		Container painel = tela.getContentPane();
 		painel.add(labelNome);
 		painel.add(txtNome);
-		painel.add(labelCargo);
 		painel.add(txtCargo);
 		painel.add(labelSetor);
-		painel.add(txtSetor);
+		painel.add(labelCargo);
 		painel.add(btnSalvar);
+		painel.add(txtSetor);
+		painel.add(btnSair);
 		
 		btnSalvar.addActionListener(new ActionListener() {
 			
@@ -65,12 +69,23 @@ public class FuncionarioGUI {
 				FuncionarioDAO dao = new FuncionarioDAO(f);
 				dao.salvar();
 				
-				JOptionPane.showMessageDialog(tela, f.getNome() + "gravado com sucesso!");
+
 				
 				txtNome.setText(null);
 				txtCargo.setText(null);
 				txtSetor.setText(null);	
 				txtNome.requestFocus();
+			}
+		});
+		
+		btnSair.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int resposta = JOptionPane.showConfirmDialog(tela, "sair do sistema?");
+				if(resposta == 0) {
+					System.exit(JFrame.EXIT_ON_CLOSE);	
+				}		
 			}
 		});
 		
