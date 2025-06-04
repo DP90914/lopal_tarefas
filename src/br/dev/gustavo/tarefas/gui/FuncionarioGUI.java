@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -14,15 +15,15 @@ import br.dev.gustavo.tarefas.dao.FuncionarioDAO;
 import br.dev.gustavo.tarefas.model.Funcionario;
 
 public class FuncionarioGUI {
-	public FuncionarioGUI() {
-		criarTela();
+	public FuncionarioGUI(JFrame tela) {
+		criarTela(tela);
 	}
 	
-	private void criarTela(){
-		JFrame tela = new JFrame();
+	private void criarTela(JFrame parent){
+		JDialog tela = new JDialog(parent, true);
 		tela.setSize(400, 400);
 		tela.setTitle("cadastro de Funcionarios");
-		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		tela.setLayout(null);
 		tela.setLocationRelativeTo(null);
 		
@@ -84,7 +85,7 @@ public class FuncionarioGUI {
 			public void actionPerformed(ActionEvent e) {
 				int resposta = JOptionPane.showConfirmDialog(tela, "sair do sistema?");
 				if(resposta == 0) {
-					System.exit(JFrame.EXIT_ON_CLOSE);	
+					tela.dispose();
 				}		
 			}
 		});

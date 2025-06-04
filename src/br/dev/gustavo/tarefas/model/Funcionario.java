@@ -42,6 +42,9 @@ public class Funcionario {
 	public String getMatricula() {
 		return matricula;
 	}
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
 	
 	public String getCargo() {
 		return cargo;

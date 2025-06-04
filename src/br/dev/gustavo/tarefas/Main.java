@@ -15,9 +15,15 @@ import br.dev.gustavo.tarefas.model.Tarefas;
 
 public class Main {
 
-	static String caminho ="/Users/25132581/tarefasDS1TA/tarefas";
+	static String caminho ="/Users/25132581/tarefasDS1TA/tarefas1";
 	
 	public static void main(String[] args) {
+
+//		FuncionarioDAO dao = new FuncionarioDAO(null);
+//		dao.getFuncionarios();		
+	
+		
+//		new FuncionarioGUI();
 		
 		new FuncionariosListaGUI();
 		
@@ -38,23 +44,18 @@ public class Main {
 		
 		try {
 			fw = new FileWriter(caminho, false);
+			
 			bw = new BufferedWriter(fw);
 			
 			bw.append("Logica de programacao \n");
-
 			bw.append("Gustavo\n");
-
 			bw.append("XPTO\n");
 
-			
 			bw.flush();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-	
-		
-	}
-	
+	}	
 	private static void lerArquivo() {
 		String caminho ="/Users/25132581/tarefasDS1TA/tarefas";
 		FileReader fr = null;
@@ -77,5 +78,4 @@ public class Main {
 		}
 		System.out.println("Fin");
 	}
-
 }
