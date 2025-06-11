@@ -83,5 +83,9 @@ public class Tarefas {
 	public void setResponsavel(Funcionario responsavel) {
 		this.responsavel = responsavel;
 	}
-
+	public String toString() {
+		return nome + "," + descricao + "," + responsavel + "," + dataInicio + "," + prazo + "," + dataPrevisaoEntrega + "," + status +"\n";
+	}
 }
+
+

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -37,8 +38,8 @@ public class FuncionariosListaGUI {
 	} 
 	
 		private void criarTela() {
-			
-			JFrame tela = new JFrame("Lista de funcionários");
+
+			JFrame tela = new JFrame();
 			tela.setSize(600, 500);
 			tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			tela.setResizable(false);

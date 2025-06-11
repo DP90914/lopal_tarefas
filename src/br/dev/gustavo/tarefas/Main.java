@@ -5,9 +5,12 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 import br.dev.gustavo.tarefas.dao.FuncionarioDAO;
+import br.dev.gustavo.tarefas.gui.CriarTarefaGUI;
 import br.dev.gustavo.tarefas.gui.FuncionarioGUI;
 import br.dev.gustavo.tarefas.gui.FuncionariosListaGUI;
 import br.dev.gustavo.tarefas.gui.TelaPrincipalGUI;
@@ -25,7 +28,9 @@ public class Main {
 	
 //		new FuncionarioGUI(null);
 		
-	new TelaPrincipalGUI(null);
+		new TelaPrincipalGUI(null);
+		
+//		new CriarTarefaGUI(null);
 		
 //		Funcionario f = new Funcionario("Pedro", "Programador");
 //		f.setSetor("TI");

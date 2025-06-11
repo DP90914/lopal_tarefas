@@ -73,4 +73,4 @@ public class FuncionarioDAO {
 	    
 	    return funcionarios; 
 	}
-	}
+}

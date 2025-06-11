@@ -54,10 +54,7 @@ public class TelaPrincipalGUI {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int resposta = JOptionPane.showConfirmDialog(tela, "sair do sistema?");
-				if(resposta == 0) {
-					tela.dispose();
-				}		
+				new TarefasGui();
 			}
 		});
 		

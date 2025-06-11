@@ -42,7 +42,8 @@ public class FuncionarioGUI {
 		JTextField txtSetor = new JTextField();
 		txtSetor.setBounds(10, 170, 200, 30);
 		
-		JButton btnSalvar = new JButton("savar");
+		
+		JButton btnSalvar = new JButton("salvar");
 		btnSalvar.setBounds(10, 250, 150, 40);
 		
 		JButton btnSair = new JButton("sair");
@@ -58,6 +59,7 @@ public class FuncionarioGUI {
 		painel.add(btnSalvar);
 		painel.add(txtSetor);
 		painel.add(btnSair);
+
 		
 		btnSalvar.addActionListener(new ActionListener() {
 			
