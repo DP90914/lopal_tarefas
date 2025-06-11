@@ -10,22 +10,22 @@ import java.util.UUID;
 import br.dev.gustavo.tarefas.dao.FuncionarioDAO;
 import br.dev.gustavo.tarefas.gui.FuncionarioGUI;
 import br.dev.gustavo.tarefas.gui.FuncionariosListaGUI;
+import br.dev.gustavo.tarefas.gui.TelaPrincipalGUI;
 import br.dev.gustavo.tarefas.model.Funcionario;
 import br.dev.gustavo.tarefas.model.Tarefas;
 
 public class Main {
 
-	static String caminho ="/Users/25132581/tarefasDS1TA/tarefas1";
+	static String caminho ="/Users/25132581/tarefasDS1TA/tarefas";
 	
 	public static void main(String[] args) {
 
 //		FuncionarioDAO dao = new FuncionarioDAO(null);
 //		dao.getFuncionarios();		
 	
+//		new FuncionarioGUI(null);
 		
-//		new FuncionarioGUI();
-		
-		new FuncionariosListaGUI();
+	new TelaPrincipalGUI(null);
 		
 //		Funcionario f = new Funcionario("Pedro", "Programador");
 //		f.setSetor("TI");

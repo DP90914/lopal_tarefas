@@ -22,15 +22,16 @@ public class FuncionarioDAO {
 	public FuncionarioDAO(Funcionario funcionario) {
 		this.funcionario = funcionario;
 		try {
-		fw = new FileWriter(arquivo, true);
-		bw = new BufferedWriter(fw);
-		fr = new FileReader(arquivo);
-		br = new BufferedReader(fr);
-		
-	}catch(Exception e){
-		System.out.println(e.getMessage());
-	}
+			fw = new FileWriter(arquivo, true);
+			bw = new BufferedWriter(fw);
+			fr = new FileReader(arquivo);
+			br = new BufferedReader(fr);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
+		
+	}
+
 	public void salvar() {
 		try {
 			bw.write(funcionario.toString());
@@ -42,27 +43,34 @@ public class FuncionarioDAO {
 	}
 	
 	public List<Funcionario> getFuncionarios() {
-		List<Funcionario> funcionarios = new ArrayList<>();
-		try {
-			String linha = "";
-			
-			while (linha != null) {
-				linha = br.readLine();				
-				if(linha != null) {
+	    List<Funcionario> funcionarios = new ArrayList<>();
 
-					String[] funcionarioVetor = linha.split(",");
-					Funcionario funcionario = new Funcionario();
-					funcionario.setMatricula(funcionarioVetor[0]);
-					funcionario.setNome(funcionarioVetor[1]);
-					funcionario.setCargo(funcionarioVetor[2]);
-					funcionario.setSetor(funcionarioVetor[3]);
-					funcionarios.add(funcionario);
-					
-				}
-			}
-			return funcionarios;
-		} catch (Exception e) {
-			return null;
-		}
+	    try {
+	        String linha = ""; 
+	        
+	        while ((linha = br.readLine()) != null) { 
+	            String[] funcionarioVetor = linha.split(",");
+	            
+	            
+	            if (funcionarioVetor.length >= 4) { 
+	                Funcionario funcionario = new Funcionario();
+	                funcionario.setMatricula(funcionarioVetor[0]);
+	                funcionario.setNome(funcionarioVetor[1]);
+	                funcionario.setCargo(funcionarioVetor[2]);
+	                funcionario.setSetor(funcionarioVetor[3]); 
+	                funcionarios.add(funcionario);
+	            } else {
+	               
+	                System.err.println("Linha malformada ignorada: " + linha);
+	            }
+	        }
+	    } catch (Exception e) {
+	        
+	        System.err.println("Erro ao ler dados dos funcionários: " + e.getMessage());
+	        e.printStackTrace();
+	    } 
+	    
+	    
+	    return funcionarios; 
 	}
-}
+	}

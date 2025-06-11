@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -22,41 +23,40 @@ public class FuncionariosListaGUI {
 	
 	private JLabel labelTitulo;
 	private JButton btnNovo;
+	private JButton btnFechar;
 	private JTable tabelaFuncionarios;
 	private DefaultTableModel modelFuncionarios;
 	private JScrollPane scroll;
 	
-		public FuncionariosListaGUI() {
-			// TODO Auto-generated constructor stub
-			criarTela();
-		} 
-		
-		private String[] colunas = {"CÓDIGO", "NOME DO FUNCIONARIO", "CARGO"};
-			
 	
-		private void criarTela(){
-			JFrame tela = new JFrame("tabela de Funcionarios");
-			tela.setSize(600, 500);
+	private String[] colunas = {"CÓDIGO", "NOME DO FUNCIONARIO", "CARGO"};
+	
+	public FuncionariosListaGUI() {
+		// TODO Auto-generated constructor stub
+		criarTela();
+	} 
+	
+		private void criarTela() {
 			
+			JFrame tela = new JFrame("Lista de funcionários");
+			tela.setSize(600, 500);
 			tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			tela.setResizable(false);
 			tela.setLayout(null);
 			tela.setLocationRelativeTo(null);
-			tela.setResizable(false);
 			
 			Container painel = tela.getContentPane();
 			
-			labelTitulo = new JLabel("cadastro de funcionarios");
+			labelTitulo = new JLabel("Cadastro de Funcionários");
+			labelTitulo.setFont(new Font("arial", Font.BOLD, 28));
+			labelTitulo.setForeground(new Color(100, 0, 100));
 			labelTitulo.setBounds(10, 10, 400, 40);
-			labelTitulo.setForeground(new Color(100,0,100));
-			labelTitulo.setFont(new Font("arial", Font.BOLD, 30));
 			
-			Object[][] dados = carregarDados();
-			
-			modelFuncionarios = new DefaultTableModel(dados, colunas);
+			modelFuncionarios = new DefaultTableModel(colunas, 1);
+			carregarDados();
 			tabelaFuncionarios = new JTable(modelFuncionarios);
 			scroll = new JScrollPane(tabelaFuncionarios);
-			scroll.setBounds(10, 60, 580, 340);
-			tabelaFuncionarios.setBounds(10, 60, 580, 340);
+			scroll.setBounds(10, 60, 550, 340);
 			
 			btnNovo = new JButton("Novo");
 			btnNovo.setBounds(10, 410, 150, 40);
@@ -65,43 +65,55 @@ public class FuncionariosListaGUI {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
 					new FuncionarioGUI(tela);
+					carregarDados();
+					
+				}
+			});
+			
+			btnFechar = new JButton("Fechar");
+			btnFechar.setBounds(410, 410, 150, 40);
+			
+			btnFechar.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) { {
+						int resposta = JOptionPane.showConfirmDialog(tela, "sair do sistema?");
+						if(resposta == 0) {
+							tela.dispose();
+						}		
+					}
+
+					
 				}
 			});
 			
 			painel.add(labelTitulo);
 			painel.add(scroll);
 			painel.add(btnNovo);
-			
-			
+			painel.add(btnFechar);
 			
 			
 			tela.setVisible(true);
-	}
-
+			
+		}
 
 		private Object[][] carregarDados() {
 			FuncionarioDAO dao = new FuncionarioDAO(null);
-			
 			List<Funcionario> funcionarios = dao.getFuncionarios();
 			
-			Object[][] dados = new Object[funcionarios.size()][3];			
+			Object[][] dados = new Object[funcionarios.size()][3];
 			
 			int i = 0;
-			
 			for(Funcionario f : funcionarios) {
 				dados[i][0] = f.getMatricula();
 				dados[i][1] = f.getNome();
 				dados[i][2] = f.getCargo();
 				i++;
-				
-			} 
-			modelFuncionarios.setDataVector(dados, colunas);
+			}
+			modelFuncionarios.setDataVector(dados, colunas);;
 			return dados;
 		}
-	
-	
-	
-	
-}
+		
+
+	}
