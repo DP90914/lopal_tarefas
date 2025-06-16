@@ -1,14 +1,15 @@
 package br.dev.gustavo.tarefas.model;
 
+import java.awt.Toolkit;
 import java.time.LocalDate;
 
 public class Tarefas {
 
 	private String nome;
 	private String descricao;
-	private LocalDate dataInicio;
+	private Toolkit dataInicio;
 	private int prazo;
-	private LocalDate dataPrevisaoEntrega;
+	private Toolkit dataPrevisaoEntrega;
 	private LocalDate dataPrevisao;
 	private Status status;
 	private Funcionario responsavel;
@@ -36,13 +37,13 @@ public class Tarefas {
 		this.descricao = descricao;
 	}
 
-	public LocalDate getDataInicio() {
+	public Toolkit getDataInicio() {
 		return dataInicio;
 	}
 
-	public void setDataInicio(LocalDate dataInicio) {
+	public void setDataInicio(Toolkit toolkit) {
 		
-		this.dataInicio = dataInicio;
+		this.dataInicio = toolkit;
 	}
 
 	public int getPrazo() {
@@ -57,8 +58,8 @@ public class Tarefas {
 		return dataPrevisaoEntrega;
 	}
 
-	public void setDataPrevisaoEntrega(LocalDate dataPrevisaoEntrega) {
-		this.dataPrevisaoEntrega = dataPrevisaoEntrega;
+	public void setDataPrevisaoEntrega(Toolkit toolkit) {
+		this.dataPrevisaoEntrega = toolkit;
 	}
 
 	public LocalDate getDataPrevisao() {

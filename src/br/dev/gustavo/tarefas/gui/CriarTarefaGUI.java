@@ -1,5 +1,6 @@
 package br.dev.gustavo.tarefas.gui;
 
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,8 +17,10 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 
 import br.dev.gustavo.tarefas.dao.FuncionarioDAO;
+import br.dev.gustavo.tarefas.dao.TarefaDAO;
 import br.dev.gustavo.tarefas.model.Funcionario;
 import br.dev.gustavo.tarefas.model.Status;
+import br.dev.gustavo.tarefas.model.Tarefas;
 
 public class CriarTarefaGUI {
 	
@@ -30,7 +33,7 @@ public class CriarTarefaGUI {
 	
 	private void criarTela(JFrame parent){
 		JDialog tela = new JDialog(parent, true);
-		tela.setSize(400, 550);
+		tela.setSize(400, 650);
 		tela.setTitle("cadastro de Tarefas");
 		tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		tela.setLayout(null);
@@ -56,35 +59,32 @@ public class CriarTarefaGUI {
 		
 		JLabel dataInicial = new JLabel("Data inicial:");
 		dataInicial.setBounds(10, 210, 150, 30);
-		
-		JTextField txtDI = new JTextField();
-		txtDI.setBounds(10, 240, 150, 30);
+		JSpinner spinnerDataInicial = criarSpinnerData();
+		spinnerDataInicial.setBounds(10, 255, 200, 30);
 		
 		JLabel labelPrazo = new JLabel("Prazo:");
-		labelPrazo.setBounds(10, 270, 150, 30);
+		labelPrazo.setBounds(10, 290, 150, 30);
 		
 		JTextField txtPrazo = new JTextField();
-		txtPrazo.setBounds(10, 290, 150, 30);
+		txtPrazo.setBounds(10, 310, 150, 30);
 		
 		JLabel labelDataConclusao = new JLabel("Data conclusão:");
-		labelDataConclusao.setBounds(10, 325, 150, 30);
+		labelDataConclusao.setBounds(10, 345, 150, 30);
 		
 		JSpinner spinnerDataConclusao = criarSpinnerData();
-		spinnerDataConclusao.setBounds(10, 365, 200, 30);
+		spinnerDataConclusao.setBounds(10, 385, 200, 30);
 		
 		JLabel labelStatus = new JLabel("Status:");
-		labelStatus.setBounds(10, 395, 150, 30);
+		labelStatus.setBounds(10, 415, 150, 30);
 		
 		comboStatus = new JComboBox<>(Status.values());
-		comboStatus.setBounds(10, 420, 200, 30);
-		
-
-		
+		comboStatus.setBounds(10, 440, 200, 30);
+			
 		JButton btnSalvar = new JButton("salvar");
-		btnSalvar.setBounds(10, 470, 150, 40);
+		btnSalvar.setBounds(10, 520, 150, 40);
 		
 		JButton btnSair = new JButton("sair");
-		btnSair.setBounds(230, 470, 150, 40);
+		btnSair.setBounds(230, 520, 150, 40);
 		
 		
 		Container painel = tela.getContentPane();
@@ -97,19 +97,30 @@ public class CriarTarefaGUI {
 		painel.add(btnSair);		
 		painel.add(labelPrazo);
 		painel.add(dataInicial);
-		painel.add(txtDI);
 		painel.add(txtPrazo);
 		painel.add(labelDataConclusao);
 		painel.add(spinnerDataConclusao);
 		painel.add(labelStatus);
 		painel.add(comboStatus);
 		painel.add(comboFuncionarios);
+		painel.add(spinnerDataInicial);
 		
 		btnSalvar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
+				Tarefas t = new Tarefas();
+				t.setNome(txtNomeT.getText());
+				t.setDescricao(txtDescricao.getText());
+				t.setDataInicio(spinnerDataInicial.getToolkit());
+				t.setDataPrevisaoEntrega(spinnerDataInicial.setValue(txtPrazo));
+				
+				
+				TarefaDAO dao = new TarefaDAO(t);
+				dao.salvar();
+				
+				JOptionPane.showMessageDialog(tela, t.getNome() + " gravado com sucesso!");
 				
 			}
 		});
