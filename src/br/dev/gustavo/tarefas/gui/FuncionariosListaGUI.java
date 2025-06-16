@@ -82,6 +82,7 @@ public class FuncionariosListaGUI {
 						int resposta = JOptionPane.showConfirmDialog(tela, "sair do sistema?");
 						if(resposta == 0) {
 							tela.dispose();
+							new TelaPrincipalGUI(null);
 						}		
 					}
 

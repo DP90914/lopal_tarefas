@@ -28,9 +28,9 @@ public class Main {
 	
 //		new FuncionarioGUI(null);
 		
-		new TelaPrincipalGUI(null);
+//		new TelaPrincipalGUI(null);
 		
-//		new CriarTarefaGUI(null);
+		new CriarTarefaGUI(null);
 		
 //		Funcionario f = new Funcionario("Pedro", "Programador");
 //		f.setSetor("TI");

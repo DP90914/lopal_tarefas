@@ -16,7 +16,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import br.dev.gustavo.tarefas.dao.FuncionarioDAO;
+import br.dev.gustavo.tarefas.dao.TarefaDAO;
 import br.dev.gustavo.tarefas.model.Funcionario;
+import br.dev.gustavo.tarefas.model.Tarefas;
 
 public class TarefasGui {
 	
@@ -32,13 +34,13 @@ public class TarefasGui {
 	}
 	
 	
-	private String[] colunas = {"NOME DA TAREFA", "DESCRIACAO", "RESPONSAVEL", "DATA INICIAL", "PRAZO", "DATA PREV. ENTREGA", "STATUS", "DATA ENTREGA"};
+	private String[] colunas = {"NOME DA TAREFA", "DESCRIACAO", "RESPONSAVEL", "DATA INICIAL", "PRAZO", "DATA PREV. ", "STATUS"};
 	
 	
 	private void criarTela() {
 		
 		JFrame tela = new JFrame("Tabela de tarefas");
-		tela.setSize(800, 700);
+		tela.setSize(1000, 700);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tela.setResizable(false);
 		tela.setLayout(null);
@@ -55,7 +57,7 @@ public class TarefasGui {
 		carregarDados();
 		tabelaTarefas = new JTable(modelFuncionarios);
 		scroll = new JScrollPane(tabelaTarefas);
-		scroll.setBounds(10, 60, 750, 540);
+		scroll.setBounds(10, 60, 950, 540);
 		
 		btnNovo = new JButton("Novo");
 		btnNovo.setBounds(10, 610, 150, 40);
@@ -80,6 +82,7 @@ public class TarefasGui {
 					int resposta = JOptionPane.showConfirmDialog(tela, "sair do sistema?");
 					if(resposta == 0) {
 						tela.dispose();
+						new TelaPrincipalGUI(null);
 					}		
 				}
 
@@ -98,16 +101,21 @@ public class TarefasGui {
 	}
 
 	private Object[][] carregarDados() {
-		FuncionarioDAO dao = new FuncionarioDAO(null);
-		List<Funcionario> funcionarios = dao.getFuncionarios();
+		TarefaDAO dao = new TarefaDAO(null);
+		List<Tarefas> Tarefa = dao.getTarefa();
 		
-		Object[][] dados = new Object[funcionarios.size()][3];
+		Object[][] dados = new Object[Tarefa.size()][3];
 		
 		int i = 0;
-		for(Funcionario f : funcionarios) {
-			dados[i][0] = f.getMatricula();
-			dados[i][1] = f.getNome();
-			dados[i][2] = f.getCargo();
+		for(Tarefas t : Tarefa) {
+			dados[i][0] = t.getNome();
+			dados[i][1] = t.getDescricao();
+			dados[i][2] = t.getResponsavel();
+			dados[i][3] = t.getDataInicio();
+			dados[i][4] = t.getPrazo();
+			dados[i][5] = t.getDataPrevisao();
+			dados[i][6] = t.getStatus();
+			
 			i++;
 		}
 		modelFuncionarios.setDataVector(dados, colunas);

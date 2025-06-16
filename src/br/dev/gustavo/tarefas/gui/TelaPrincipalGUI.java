@@ -26,6 +26,7 @@ public class TelaPrincipalGUI {
 		tela.setSize(400, 100);
 		tela.setTitle("Tela principal");
 		tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		tela.setResizable(false);
 		tela.setLayout(null);
 		tela.setLocationRelativeTo(null);
 		
@@ -46,6 +47,7 @@ public class TelaPrincipalGUI {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				tela.dispose();
 				new FuncionariosListaGUI();
 			}
 		});
@@ -54,6 +56,7 @@ public class TelaPrincipalGUI {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				tela.dispose();
 				new TarefasGui();
 			}
 		});
