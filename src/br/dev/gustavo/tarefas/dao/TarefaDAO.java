@@ -18,7 +18,8 @@ public class TarefaDAO {
 	private FileReader fr;
 	private BufferedReader br;
 	
-	private String arquivo = "/Users/25132581/tarefasDS1TA/tarefas.csv";
+//	private String arquivo = "/Users/25132581/tarefasDS1TA/tarefas.csv";
+	private String arquivo = "C:\\Users\\25132581\\Desktop\\tarefasDS1TA\\tarefas.csv";
 	
 	public TarefaDAO(Tarefas tarefa) {
 		this.tarefa = tarefa;

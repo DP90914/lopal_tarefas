@@ -68,11 +68,12 @@ public class CriarTarefaGUI {
 		JTextField txtPrazo = new JTextField();
 		txtPrazo.setBounds(10, 310, 150, 30);
 		
-		JLabel labelDataConclusao = new JLabel("Data conclusão:");
+		JLabel labelDataConclusao = new JLabel("Data Prev. conclusão:");
 		labelDataConclusao.setBounds(10, 345, 150, 30);
 		
-		JSpinner spinnerDataConclusao = criarSpinnerData();
-		spinnerDataConclusao.setBounds(10, 385, 200, 30);
+		JTextField txtDataPrevConclusao = new JTextField();
+		txtDataPrevConclusao.setBounds(10, 385, 200, 30);
+		txtDataPrevConclusao.setEditable(false);
 		
 		JLabel labelStatus = new JLabel("Status:");
 		labelStatus.setBounds(10, 415, 150, 30);
@@ -99,7 +100,7 @@ public class CriarTarefaGUI {
 		painel.add(dataInicial);
 		painel.add(txtPrazo);
 		painel.add(labelDataConclusao);
-		painel.add(spinnerDataConclusao);
+		painel.add(txtDataPrevConclusao);
 		painel.add(labelStatus);
 		painel.add(comboStatus);
 		painel.add(comboFuncionarios);
@@ -114,7 +115,7 @@ public class CriarTarefaGUI {
 				t.setNome(txtNomeT.getText());
 				t.setDescricao(txtDescricao.getText());
 				t.setDataInicio(spinnerDataInicial.getToolkit());
-				t.setDataPrevisaoEntrega(spinnerDataInicial.setValue(txtPrazo));
+
 				
 				
 				TarefaDAO dao = new TarefaDAO(t);
@@ -146,4 +147,14 @@ public class CriarTarefaGUI {
         spinner.setEditor(editor);
         return spinner;
 	}
+//	private JSpinner DataSomaPrazo() {
+//        String prazo = txtPrazo.getText();
+//        int diasParaAdicionar = Integer.parseInt(prazo);
+//        JSpinner spinner = new JSpinner(new SpinnerDateModel());
+//        JSpinner.DateEditor editor = new JSpinner.DateEditor(spinner, "dd/MM/yyyy");
+//        spinner.setEditor(editor);
+//        spinner.
+//        return spinner;
+//		
+//	}
 }

@@ -54,7 +54,7 @@ public class Tarefas {
 		this.prazo = prazo;
 	}
 
-	public LocalDate getDataPrevisaoEntrega() {
+	public Toolkit getDataPrevisaoEntrega() {
 		return dataPrevisaoEntrega;
 	}
 

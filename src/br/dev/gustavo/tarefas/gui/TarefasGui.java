@@ -73,7 +73,7 @@ public class TarefasGui {
 		});
 		
 		btnFechar = new JButton("Fechar");
-		btnFechar.setBounds(610, 610, 150, 40);
+		btnFechar.setBounds(810, 610, 150, 40);
 		
 		btnFechar.addActionListener(new ActionListener() {
 			
