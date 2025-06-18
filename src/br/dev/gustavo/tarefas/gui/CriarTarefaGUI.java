@@ -4,8 +4,12 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -56,11 +60,17 @@ public class CriarTarefaGUI {
 		List<Funcionario> funcionarios = new FuncionarioDAO(null).getFuncionarios();
 		comboFuncionarios = new JComboBox<>(funcionarios.toArray(new Funcionario[0]));
         comboFuncionarios.setBounds(10, 170, 200, 30);
+        
 		
 		JLabel dataInicial = new JLabel("Data inicial:");
 		dataInicial.setBounds(10, 210, 150, 30);
-		JSpinner spinnerDataInicial = criarSpinnerData();
-		spinnerDataInicial.setBounds(10, 255, 200, 30);
+		JTextField txtDataInicial = new JTextField();
+		txtDataInicial.setBounds(10, 255, 200, 30);
+		
+		
+
+        // Definir o formato da data
+
 		
 		JLabel labelPrazo = new JLabel("Prazo:");
 		labelPrazo.setBounds(10, 290, 150, 30);
@@ -68,12 +78,6 @@ public class CriarTarefaGUI {
 		JTextField txtPrazo = new JTextField();
 		txtPrazo.setBounds(10, 310, 150, 30);
 		
-		JLabel labelDataConclusao = new JLabel("Data Prev. conclusão:");
-		labelDataConclusao.setBounds(10, 345, 150, 30);
-		
-		JTextField txtDataPrevConclusao = new JTextField();
-		txtDataPrevConclusao.setBounds(10, 385, 200, 30);
-		txtDataPrevConclusao.setEditable(false);
 		
 		JLabel labelStatus = new JLabel("Status:");
 		labelStatus.setBounds(10, 415, 150, 30);
@@ -99,22 +103,31 @@ public class CriarTarefaGUI {
 		painel.add(labelPrazo);
 		painel.add(dataInicial);
 		painel.add(txtPrazo);
-		painel.add(labelDataConclusao);
-		painel.add(txtDataPrevConclusao);
 		painel.add(labelStatus);
 		painel.add(comboStatus);
 		painel.add(comboFuncionarios);
-		painel.add(spinnerDataInicial);
+		painel.add(txtDataInicial);
 		
 		btnSalvar.addActionListener(new ActionListener() {
 			
+			private AbstractButton txtDataConclusao;
+
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {					            
+	            String dataInicialStr = dataInicial.getText();	           
+	            
+	            int prazoDias = Integer.parseInt(txtPrazo.getText());
+
+	            				
 				Tarefas t = new Tarefas();
 				t.setNome(txtNomeT.getText());
 				t.setDescricao(txtDescricao.getText());
-				t.setDataInicio(spinnerDataInicial.getToolkit());
+				t.setResponsavel(comboFuncionarios.getSelectedItem().toString());				
+				t.setPrazo(prazoDias);
+				t.setDataInicio(txtDataInicial.getText());
+				t.setStatus(comboStatus.getSelectedItem().toString());
+
+				
 
 				
 				
@@ -139,22 +152,4 @@ public class CriarTarefaGUI {
 		
 		tela.setVisible(true);
 		
-	}
-
-	private JSpinner criarSpinnerData() {
-        JSpinner spinner = new JSpinner(new SpinnerDateModel());
-        JSpinner.DateEditor editor = new JSpinner.DateEditor(spinner, "dd/MM/yyyy");
-        spinner.setEditor(editor);
-        return spinner;
-	}
-//	private JSpinner DataSomaPrazo() {
-//        String prazo = txtPrazo.getText();
-//        int diasParaAdicionar = Integer.parseInt(prazo);
-//        JSpinner spinner = new JSpinner(new SpinnerDateModel());
-//        JSpinner.DateEditor editor = new JSpinner.DateEditor(spinner, "dd/MM/yyyy");
-//        spinner.setEditor(editor);
-//        spinner.
-//        return spinner;
-//		
-//	}
-}
+	}}

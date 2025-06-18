@@ -26,7 +26,7 @@ public class TarefasGui {
 	private JButton btnNovo;
 	private JButton btnFechar;
 	private JTable tabelaTarefas;
-	private DefaultTableModel modelFuncionarios;
+	private DefaultTableModel modelTarefas;
 	private JScrollPane scroll;
 	
 	public TarefasGui(){
@@ -34,7 +34,7 @@ public class TarefasGui {
 	}
 	
 	
-	private String[] colunas = {"NOME DA TAREFA", "DESCRIACAO", "RESPONSAVEL", "DATA INICIAL", "PRAZO", "DATA PREV. ", "STATUS"};
+	private String[] colunas = {"CODIGO", "NOME DA TAREFA", "RESPONSAVEL",};
 	
 	
 	private void criarTela() {
@@ -48,14 +48,14 @@ public class TarefasGui {
 		
 		Container painel = tela.getContentPane();
 		
-		labelTitulo = new JLabel("Cadastro de Funcionários");
+		labelTitulo = new JLabel("Cadastro de Tarefas");
 		labelTitulo.setFont(new Font("arial", Font.BOLD, 28));
 		labelTitulo.setForeground(new Color(100, 0, 100));
 		labelTitulo.setBounds(10, 10, 400, 40);
 		
-		modelFuncionarios = new DefaultTableModel(colunas, 1);
+		modelTarefas = new DefaultTableModel(colunas, 1);
 		carregarDados();
-		tabelaTarefas = new JTable(modelFuncionarios);
+		tabelaTarefas = new JTable(modelTarefas);
 		scroll = new JScrollPane(tabelaTarefas);
 		scroll.setBounds(10, 60, 950, 540);
 		
@@ -108,16 +108,13 @@ public class TarefasGui {
 		
 		int i = 0;
 		for(Tarefas t : Tarefa) {
-			dados[i][0] = t.getNome();
-			dados[i][1] = t.getDescricao();
+			
+			dados[i][0] = t.getCodigo();
+			dados[i][1] = t.getNome();
 			dados[i][2] = t.getResponsavel();
-			dados[i][3] = t.getDataInicio();
-			dados[i][4] = t.getPrazo();
-			dados[i][5] = t.getDataPrevisao();
-			dados[i][6] = t.getStatus();
 			
 			i++;
 		}
-		modelFuncionarios.setDataVector(dados, colunas);
+		modelTarefas.setDataVector(dados, colunas);
 		return dados;
 	}}

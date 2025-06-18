@@ -18,8 +18,8 @@ public class TarefaDAO {
 	private FileReader fr;
 	private BufferedReader br;
 	
-//	private String arquivo = "/Users/25132581/tarefasDS1TA/tarefas.csv";
-	private String arquivo = "C:\\Users\\25132581\\Desktop\\tarefasDS1TA\\tarefas.csv";
+	private String arquivo = "/Users/25132581/tarefasDS1TA/tarefas.csv";
+//	private String arquivo = "C:\\Users\\25132581\\Desktop\\tarefasDS1TA\\tarefas.csv";
 	
 	public TarefaDAO(Tarefas tarefa) {
 		this.tarefa = tarefa;
@@ -50,28 +50,18 @@ public class TarefaDAO {
 		        
 		        while ((linha = br.readLine()) != null) { 
 		            String[] tarefaVetor = linha.split(",");
-		            
-		            
-		            if (tarefaVetor.length >= 4) { 
-		            	Tarefas tarefa = new Tarefas();
-		            	tarefa.setNome(tarefaVetor[0]);
-		            	tarefa.setDescricao(tarefaVetor[1]);
-//		            	tarefa.setResponsavel(tarefaVetor[2]); 
-//		            	tarefa.setDataInicio(tarefaVetor[3]);
-//		            	tarefa.setPrazo(tarefaVetor[4]); 
-//		            	tarefa.setDataPrevisao(tarefaVetor[5]); 
-//		            	tarefa.setStatus(tarefaVetor[6]); 
 
-		            	Tarefas.add(tarefa);
-		            } else {
-		               
-		                System.err.println("Linha malformada ignorada: " + linha);
-		            }
-		        }
-		    } catch (Exception e) {
+		            Tarefas tarefa = new Tarefas();
+		            tarefa.getCodigo(tarefaVetor[0]);
+		            tarefa.setNome(tarefaVetor[1]);
+		            tarefa.setResponsavel(tarefaVetor[2]); 
+
+		            	
+		            Tarefas.add(tarefa);
+
 		        
-		        System.err.println("Erro ao ler dados dos funcionários: " + e.getMessage());
-		        e.printStackTrace();
+		        }}catch (Exception e) {		     
+		        System.err.println("Erro ao ler dados dos funcionários: " + e.getMessage());		
 		    } 
 		    
 		    

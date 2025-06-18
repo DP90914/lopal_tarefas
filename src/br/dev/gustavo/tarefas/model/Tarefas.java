@@ -3,22 +3,22 @@ package br.dev.gustavo.tarefas.model;
 import java.awt.Toolkit;
 import java.time.LocalDate;
 
+import br.dev.gustavo.tarefas.utils.Utils;
+
 public class Tarefas {
 
 	private String nome;
 	private String descricao;
-	private Toolkit dataInicio;
+	private String dataInicio;
 	private int prazo;
-	private Toolkit dataPrevisaoEntrega;
 	private LocalDate dataPrevisao;
-	private Status status;
-	private Funcionario responsavel;
+	private String status;
+	private String responsavel;
+	private String codigo;
 	
 	public Tarefas() {
 		System.out.println("criando uma trarefa...");
-	}
-	public Tarefas(String nome) {
-		System.out.println("criando a trarefa" + nome);
+		this.codigo = Utils.gerarUUID8();
 	}
 
 	public String getNome() {
@@ -37,13 +37,20 @@ public class Tarefas {
 		this.descricao = descricao;
 	}
 
-	public Toolkit getDataInicio() {
+	public String getDataInicio() {
 		return dataInicio;
 	}
+	
+	public String getCodigo() {
+		return codigo;
+	}
+	public void getCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 
-	public void setDataInicio(Toolkit toolkit) {
+	public void setDataInicio(String string) {
 		
-		this.dataInicio = toolkit;
+		this.dataInicio = string;
 	}
 
 	public int getPrazo() {
@@ -54,13 +61,6 @@ public class Tarefas {
 		this.prazo = prazo;
 	}
 
-	public Toolkit getDataPrevisaoEntrega() {
-		return dataPrevisaoEntrega;
-	}
-
-	public void setDataPrevisaoEntrega(Toolkit toolkit) {
-		this.dataPrevisaoEntrega = toolkit;
-	}
 
 	public LocalDate getDataPrevisao() {
 		return dataPrevisao;
@@ -70,23 +70,23 @@ public class Tarefas {
 		this.dataPrevisao = dataPrevisao;
 	}
 
-	public Status getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
-		this.status = status;
+	public void setStatus(String string) {
+		this.status = string;
 	}
 
-	public Funcionario getResponsavel() {
+	public String getResponsavel() {
 		return responsavel;
 	}
 
-	public void setResponsavel(Funcionario responsavel) {
-		this.responsavel = responsavel;
+	public void setResponsavel(String string) {
+		this.responsavel = string;
 	}
 	public String toString() {
-		return nome + "," + descricao + "," + responsavel + "," + dataInicio + "," + prazo + "," + dataPrevisaoEntrega + "," + status +"\n";
+		return codigo + "," + nome + "," + responsavel + "," + descricao + "," + dataInicio + "," + prazo + "," + dataPrevisao + "," + status +"\n";
 	}
 }
 
